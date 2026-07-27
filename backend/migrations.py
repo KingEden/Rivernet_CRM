@@ -1,5 +1,8 @@
 from sqlalchemy import inspect, text
-from backend.database import engine
+try:
+    from backend.database import engine
+except ImportError:
+    from database import engine
 
 def apply_migrations():
     """

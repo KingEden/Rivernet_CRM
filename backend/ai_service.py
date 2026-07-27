@@ -581,7 +581,10 @@ def compute_similarity_leads(lead, db_session) -> List[Dict[str, Any]]:
     Weights: 50% Category, 20% City Location, 15% Reviews/Rating, 15% Technical Quality.
     Returns empty list if no other records exist in the database.
     """
-    from backend.models import Lead
+    try:
+        from backend.models import Lead
+    except ImportError:
+        from models import Lead
     
     other_leads = db_session.query(Lead).filter(
         Lead.category == lead.category,
