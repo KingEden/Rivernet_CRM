@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeadHunter AI — Digital Agency Capabilities Brochure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #8b5cf6;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --gold-star: #fbbf24;
+      --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      --gradient-star: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--accent-cyan);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Pillars */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .pillar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(59, 130, 246, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .pillar-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .pillar-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    /* Pricing Packages Grid */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .pkg-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .pkg-card.featured {
+      border-color: var(--gold-star);
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.15);
+    }
+
+    .pkg-card.featured::before {
+      content: "MOST POPULAR ⭐";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-star);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    .pkg-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .pkg-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .pkg-target {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      min-height: 50px;
+    }
+
+    .pkg-divider {
+      height: 1px;
+      background: var(--card-border);
+      margin-bottom: 24px;
+    }
+
+    .pkg-list-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+    }
+
+    .pkg-features {
+      list-style: none;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .pkg-features li {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #e5e7eb;
+    }
+
+    .pkg-features li span.check {
+      color: #10b981;
+      font-weight: 800;
+    }
+
+    .pkg-outcome {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid var(--accent-blue);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      color: #d1d5db;
+      font-style: italic;
+    }
+
+    /* Comparison Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      overflow-x: auto;
+      margin-bottom: 60px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.95rem;
+    }
+
+    th {
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.center {
+      text-align: center;
+    }
+
+    .check-yes {
+      color: #10b981;
+      font-weight: 800;
+    }
+
+    .dash {
+      color: #6b7280;
+    }
+
+    /* Add-ons Section */
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .addon-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .addon-cat {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .addon-items {
+      list-style: none;
+    }
+
+    .addon-items li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .addon-items li::before {
+      content: "•";
+      color: var(--accent-blue);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* CTA Header */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: #d1d5db;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .pkg-card, .pillar-card, .table-container, .addon-box {
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #000;
+      }
+      h1, .section-title, .pillar-title, .pkg-name {
+        color: #000 !important;
+        -webkit-text-fill-color: initial !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="badge">LeadHunter AI Agency</div>
+      <h1>Digital Capabilities & Pricing Brochure</h1>
+      <p class="subtitle">We engineer high-converting web applications, brand identities, and automated digital growth systems tailored to elevate your business.</p>
+    </header>
+
+    <!-- Pillars -->
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-title">High Performance</div>
+        <div class="pillar-desc">Lightning-fast, mobile-first websites optimized for maximum search engine performance.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🎯</div>
+        <div class="pillar-title">Conversion Driven</div>
+        <div class="pillar-desc">Strategic UI/UX design focused on turning casual website visitors into qualified leads.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🤖</div>
+        <div class="pillar-title">AI & Automation</div>
+        <div class="pillar-desc">Integrated AI chatbots, automatic scheduling systems, and smart client portals.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🛡️</div>
+        <div class="pillar-title">Enterprise Care</div>
+        <div class="pillar-desc">Proactive security hardening, monthly website care plans, and dedicated technical support.</div>
+      </div>
+    </div>
+
+    <!-- Package Cards Section -->
+    <h2 class="section-title">Service Packages</h2>
+    <p class="section-sub">Transparent, modular pricing plans structured to grow alongside your revenue.</p>
+
+    <div class="packages-grid">
+      <!-- Starter Package -->
+      <div class="pkg-card">
+        <div class="pkg-name">1. Starter Website</div>
+        <div class="pkg-target">Perfect for startups, local businesses, and freelancers establishing a strong digital foundation.</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-list-title">What's Included</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Up to 5 Custom Designed Pages</li>
+          <li><span class="check">✓</span> Fully Mobile Responsive Design</li>
+          <li><span class="check">✓</span> Professional Copywriting (2 Pages)</li>
+          <li><span class="check">✓</span> Contact Form & Google Maps</li>
+          <li><span class="check">✓</span> Basic On-Page SEO & Analytics</li>
+          <li><span class="check">✓</span> SSL Security & Hosting Setup</li>
+          <li><span class="check">✓</span> 30 Days Post-Launch Support</li>
+        </ul>
+        <div class="pkg-outcome">
+          "Launch a modern website that builds instant credibility and establishes your online footprint."
+        </div>
+      </div>
+
+      <!-- Professional Package ⭐ -->
+      <div class="pkg-card featured">
+        <div class="pkg-name">2. Professional ⭐</div>
+        <div class="pkg-target">Perfect for growing businesses seeking active lead generation, top SEO rankings, and branding.</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-list-title">Everything in Starter, Plus</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Up to 10 Custom Pages + Blog CMS</li>
+          <li><span class="check">✓</span> Logo Design & Complete Brand Kit</li>
+          <li><span class="check">✓</span> Professional Copywriting (10 Pages)</li>
+          <li><span class="check">✓</span> Advanced SEO & Google Business Setup</li>
+          <li><span class="check">✓</span> Online Booking & Appointment System</li>
+          <li><span class="check">✓</span> Advanced Analytics Dashboard</li>
+          <li><span class="check">✓</span> 60 Days Post-Launch Support</li>
+        </ul>
+        <div class="pkg-outcome">
+          "Attract more customers, dominate local search, and convert traffic into paying clients."
+        </div>
+      </div>
+
+      <!-- Premium Package -->
+      <div class="pkg-card">
+        <div class="pkg-name">3. Premium Website</div>
+        <div class="pkg-target">Perfect for enterprise brands, e-commerce, and platforms needing a complete digital ecosystem.</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-list-title">Everything in Professional, Plus</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Unlimited Pages & Unlimited Copywriting</li>
+          <li><span class="check">✓</span> Professional Photography & Video</li>
+          <li><span class="check">✓</span> AI Chatbot & E-commerce Store</li>
+          <li><span class="check">✓</span> Membership Portal & Unlimited APIs</li>
+          <li><span class="check">✓</span> Full SEO, PPC Ads & Email Automation</li>
+          <li><span class="check">✓</span> Enterprise Security & Speed Tuning</li>
+          <li><span class="check">✓</span> 3 Months Care Plan & 90 Days Support</li>
+        </ul>
+        <div class="pkg-outcome">
+          "Create a scalable, automated revenue engine backed by full media production and marketing."
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Comparison Table -->
+    <h2 class="section-title">Feature Matrix</h2>
+    <p class="section-sub">Detailed breakdown of features included across each package tier.</p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature & Capability</th>
+            <th style="text-align: center;">Starter</th>
+            <th style="text-align: center;">Professional ⭐</th>
+            <th style="text-align: center;">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Custom Pages</td>
+            <td class="center">Up to 5</td>
+            <td class="center">Up to 10</td>
+            <td class="center">Unlimited</td>
+          </tr>
+          <tr>
+            <td>Copywriting</td>
+            <td class="center">2 Pages</td>
+            <td class="center">Up to 10 Pages</td>
+            <td class="center">Unlimited</td>
+          </tr>
+          <tr>
+            <td>Logo & Branding Kit</td>
+            <td class="center dash">—</td>
+            <td class="center check-yes">✓</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>CMS & Blog Setup</td>
+            <td class="center dash">—</td>
+            <td class="center check-yes">✓</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>SEO Tier</td>
+            <td class="center">Basic</td>
+            <td class="center">Advanced</td>
+            <td class="center">Full Campaign</td>
+          </tr>
+          <tr>
+            <td>Booking System</td>
+            <td class="center">Optional</td>
+            <td class="center check-yes">✓</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>AI Chatbot & E-Commerce</td>
+            <td class="center dash">—</td>
+            <td class="center">Optional</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Photography & Video</td>
+            <td class="center dash">—</td>
+            <td class="center">Optional</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>PPC Ads & Email Automation</td>
+            <td class="center dash">—</td>
+            <td class="center">Optional</td>
+            <td class="center check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Maintenance & Care Plan</td>
+            <td class="center">Optional</td>
+            <td class="center">Optional</td>
+            <td class="center check-yes">3 Months Included</td>
+          </tr>
+          <tr>
+            <td>Free Support Window</td>
+            <td class="center">30 Days</td>
+            <td class="center">60 Days</td>
+            <td class="center">90 Days Priority</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Add-ons -->
+    <h2 class="section-title">A La Carte Add-On Services</h2>
+    <p class="section-sub">Enhance your package with specialized services as your business demands.</p>
+
+    <div class="addons-grid">
+      <div class="addon-box">
+        <div class="addon-cat">Brand & Creative</div>
+        <ul class="addon-items">
+          <li>Additional Custom Pages</li>
+          <li>Logo Design & Rebranding</li>
+          <li>Brand Identity Kit</li>
+          <li>Professional Copywriting</li>
+          <li>On-Location Photography</li>
+          <li>Corporate Video Production</li>
+        </ul>
+      </div>
+
+      <div class="addon-box">
+        <div class="addon-cat">Marketing & Growth</div>
+        <ul class="addon-items">
+          <li>Google Business Optimization</li>
+          <li>Monthly SEO Campaigns</li>
+          <li>Google & Meta Ads Management</li>
+          <li>Social Media Management</li>
+          <li>Email Marketing Automation</li>
+        </ul>
+      </div>
+
+      <div class="addon-box">
+        <div class="addon-cat">Advanced Features</div>
+        <ul class="addon-items">
+          <li>AI Chatbot Deployment</li>
+          <li>E-commerce Store Setup</li>
+          <li>Membership & Client Portal</li>
+          <li>Online Booking Systems</li>
+          <li>Custom API Integrations</li>
+        </ul>
+      </div>
+
+      <div class="addon-box">
+        <div class="addon-cat">Care & Security</div>
+        <ul class="addon-items">
+          <li>Managed Website Maintenance</li>
+          <li>Website Proactive Care Plan</li>
+          <li>Hosting & Domain Management</li>
+          <li>24/7 Security Scans</li>
+          <li>Performance Speed Optimization</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <h2>Ready to Build Your Digital Ecosystem?</h2>
+      <p>Schedule a strategy call with our agency team today and let's map out your custom digital growth plan.</p>
+      <a href="mailto:contact@leadhunter.ai" class="cta-btn">Book Your Consultation</a>
+
+      <div class="contact-details">
+        <div>📧 contact@leadhunter.ai</div>
+        <div>🌐 www.leadhunter.ai</div>
+        <div>📞 (555) 019-2834</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
