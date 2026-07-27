@@ -4,7 +4,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Default to SQLite for local development, support PostgreSQL via environment variable
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./leadhunter.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    if os.getenv("VERCEL"):
+        DATABASE_URL = "sqlite:////tmp/leadhunter.db"
+    else:
+        DATABASE_URL = "sqlite:///./leadhunter.db"
 
 # Fix legacy postgres:// URL format provided by some cloud providers
 if DATABASE_URL and DATABASE_URL.startswith("postgres://"):

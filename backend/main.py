@@ -43,9 +43,12 @@ except ImportError:
     )
     from migrations import apply_migrations
 
-# Initialize Database tables
-Base.metadata.create_all(bind=engine)
-apply_migrations()
+# Initialize Database tables safely
+try:
+    Base.metadata.create_all(bind=engine)
+    apply_migrations()
+except Exception as e:
+    print(f"Startup DB migration warning: {e}")
 
 app = FastAPI(title="Rivernet Prospector Backend")
 
@@ -88,17 +91,20 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         return False
 
 # Pre-seed default user if database is fresh
-db_session = SessionLocal()
 try:
-    default_email = "agency@rivernet.io"
-    db_user = db_session.query(User).filter(User.email == default_email).first()
-    if not db_user:
-        hashed_pwd = get_password_hash("rivernet2026")
-        default_user = User(email=default_email, hashed_password=hashed_pwd)
-        db_session.add(default_user)
-        db_session.commit()
-finally:
-    db_session.close()
+    db_session = SessionLocal()
+    try:
+        default_email = "agency@rivernet.io"
+        db_user = db_session.query(User).filter(User.email == default_email).first()
+        if not db_user:
+            hashed_pwd = get_password_hash("rivernet2026")
+            default_user = User(email=default_email, hashed_password=hashed_pwd)
+            db_session.add(default_user)
+            db_session.commit()
+    finally:
+        db_session.close()
+except Exception as e:
+    print(f"Startup user seeding warning: {e}")
 
 # Pydantic Schemas
 class UserCreate(BaseModel):

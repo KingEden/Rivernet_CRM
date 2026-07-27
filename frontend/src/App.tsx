@@ -5,7 +5,7 @@ import OutreachQueue from "./pages/OutreachQueue";
 import Settings from "./pages/Settings";
 import InfoDeck from "./pages/InfoDeck";
 import WebsitePackages from "./pages/WebsitePackages";
-import { api, getAuthToken, setAuthToken, logout } from "./api";
+import { api, getAuthToken, logout } from "./api";
 import logoPng from "./assets/logo.png";
 import { 
   UsersIcon, 
@@ -45,8 +45,8 @@ export default function App() {
 
   // Sync dark mode class
   const [isRegister, setIsRegister] = useState(false);
-  const [email, setEmail] = useState("agency@rivernet.io");
-  const [password, setPassword] = useState("rivernet2026");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
 
@@ -80,14 +80,6 @@ export default function App() {
     } finally {
       setAuthLoading(false);
     }
-  };
-
-  const handleDemoLogin = () => {
-    // Allows testing the UI even if the backend is briefly not running
-    const fakeToken = "demo_jwt_token_rivernet";
-    setAuthToken(fakeToken);
-    localStorage.setItem("rivernet_user", JSON.stringify({ email: "demo@rivernet.io" }));
-    setToken(fakeToken);
   };
 
   const handleLogout = () => {
@@ -169,23 +161,6 @@ export default function App() {
               {isRegister ? "Log In" : "Sign Up"}
             </button>
           </div>
-
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-slate-200 dark:border-slate-800"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white dark:bg-slate-900 px-2 text-slate-400">Or For Testing</span>
-            </div>
-          </div>
-
-          {/* Demo Login Button */}
-          <button
-            onClick={handleDemoLogin}
-            className="w-full py-2.5 rounded-xl border border-slate-250 dark:border-slate-800 text-xs font-semibold text-slate-650 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-850 transition-colors"
-          >
-            Enter Sandbox Mode
-          </button>
         </div>
       </div>
     );
