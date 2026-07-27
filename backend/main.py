@@ -12,7 +12,7 @@ from jose import JWTError, jwt
 import hashlib
 import secrets
 
-import pandas as pd
+# Standard Python imports (no heavy top-level data libraries required)
 
 try:
     from backend.database import get_db, Base, engine, SessionLocal
@@ -527,30 +527,37 @@ def export_leads(
             "Discovered Date": l.created_at.strftime("%Y-%m-%d") if l.created_at else ""
         })
         
-    df = pd.DataFrame(flat_data)
-    
     if format.lower() == "json":
-        json_str = df.to_json(orient="records", indent=2)
+        import json
         return Response(
-            content=json_str,
+            content=json.dumps(flat_data, indent=2),
             media_type="application/json",
             headers={"Content-Disposition": "attachment; filename=rivernet_leads.json"}
         )
         
     elif format.lower() == "excel":
-        output = io.BytesIO()
-        with pd.ExcelWriter(output, engine="openpyxl") as writer:
-            df.to_excel(writer, index=False, sheet_name="Leads")
-        output.seek(0)
-        return StreamingResponse(
-            output,
-            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            headers={"Content-Disposition": "attachment; filename=rivernet_leads.xlsx"}
-        )
+        try:
+            import pandas as pd
+            output = io.BytesIO()
+            df = pd.DataFrame(flat_data)
+            with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                df.to_excel(writer, index=False, sheet_name="Leads")
+            output.seek(0)
+            return StreamingResponse(
+                output,
+                media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                headers={"Content-Disposition": "attachment; filename=rivernet_leads.xlsx"}
+            )
+        except Exception:
+            raise HTTPException(status_code=400, detail="Excel export requires pandas and openpyxl. Use CSV export format instead.")
         
     else:  # Default to CSV
+        import csv
         output = io.StringIO()
-        df.to_csv(output, index=False)
+        if flat_data:
+            writer = csv.DictWriter(output, fieldnames=list(flat_data[0].keys()))
+            writer.writeheader()
+            writer.writerows(flat_data)
         output.seek(0)
         return Response(
             content=output.getvalue(),
